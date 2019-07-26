@@ -1,0 +1,23 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2 
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: asia.gcr.io/silent-turbine-230909/final-nginx
+#        env:
+#        - name: BACKEND_SERVICE_NAME
+#          value: db-service
+        ports:
+        - containerPort: 80
+
