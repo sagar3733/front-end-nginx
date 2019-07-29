@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: asia.gcr.io/silent-turbine-230909/final-nginx
+#        image: asia.gcr.io/silent-turbine-230909/final-nginx
+        image: image
 #        env:
 #        - name: BACKEND_SERVICE_NAME
 #          value: db-service
