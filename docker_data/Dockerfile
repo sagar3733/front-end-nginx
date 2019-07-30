@@ -1,9 +1,10 @@
-FROM alpine:3.7
-#RUN yum install supervisor -y
-#RUN apk update && apk add --no-cache supervisor
-#RUN apk add --no-cache supervisor
-RUN apk add --no-cache python
-#COPY /files/supervisord.conf /etc/supervisord.conf
-#CMD ["/usr/bin/supervisord"]
-#RUN apk add --no-cache mysql-client
-#ENTRYPOINT ["mysql"]
+FROM nginx:latest
+COPY /files/static_site.cfg.j2 /etc/nginx/nginx.conf
+COPY /files/index.html /usr/share/nginx/html/index.html
+COPY /files/review.php /usr/share/nginx/html/review.php
+#COPY /files/badproxy /etc/apt/apt.conf.d/99fixbadproxy
+RUN apt-get update
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf && apt-get update && apt-get install php7.0-mysql php7.0-fpm -y
+COPY /files/start.sh /start.sh
+COPY /files/www.cfg.j2 /etc/php/7.0/fpm/pool.d/www.conf
+CMD ["/bin/bash","/start.sh"]
