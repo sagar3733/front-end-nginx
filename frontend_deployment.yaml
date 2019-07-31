@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: asia.gcr.io/silent-turbine-230909/final-nginx
+        image: __IMAGE__
+#        image: asia.gcr.io/silent-turbine-230909/final-nginx
         ports:
         - containerPort: 80
 
